@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typester - Test</title>
-    <link rel="stylesheet" href="/test/styles.css">
-    <script defer src="/test/test.js"></script>
-</head>
-<body>
-    
-<ul id="navbar">
-    <li id="title">Typester</li>
-    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-    <li class="nav-item"><a class="nav-link" href="/test">Test</a></li>
-</ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Typester - Test</title>
+        <link rel="stylesheet" href="/test/styles.css">
+        <script defer src="/test/test.js"></script>
+    </head>
+    <body>
 
+        <ul id="navbar">
+            <li id="title">Typester</li>
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link"
+                    href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/test">Test</a></li>
+        </ul>
 
-<div id="test-box">
-    <div id="text-display">Click here and start typing to begin the test.</div>
-    <input id="text-input" type="text" placeholder="Start typing...">
-    <div id="stats">
-        <p class="stat-item">WPM: <span id="wpm">0</span></p>
-        <p class="stat-item">Accuracy: <span id="accuracy">0</span>%</p>
-        <p class="stat-item">Time: <span id="time">0</span>s</p>
-        <div id="controls">
-            <label for="time-select">Select Time: </label>
-            <select id="time-select">
-                <option value="15">15s</option>
-                <option value="30" selected>30s</option>
-                <option value="60">60s</option>
-                <option value="120">120s</option>
-            </select>
+        <div id="test-box">
+            <div id="text-display">Click here and start typing to begin the
+                test.</div>
+            <input id="text-input" type="text" placeholder="Start typing..."
+                type="text"
+                id="text-input"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false">
+            <div id="stats">
+                <p class="stat-item">WPM: <span id="wpm">0</span></p>
+                <p class="stat-item">Accuracy: <span id="accuracy">0</span>%</p>
+                <p class="stat-item">Time: <span id="time">0</span>s</p>
+                <div id="controls">
+                    <label for="time-select">Select Time: </label>
+                    <select id="time-select">
+                        <option value="15">15s</option>
+                        <option value="30" selected>30s</option>
+                        <option value="60">60s</option>
+                        <option value="120">120s</option>
+                    </select>
+                </div>
+            </div>
+            <button id="restart-btn" onclick="loadText()">Restart Test</button>
         </div>
-    </div>
-    <button id="restart-btn" onclick="loadText()">Restart Test</button>
-</div>
 
-<!-- Modal -->
-<div id="result-modal" class="modal">
-  <div class="modal-content">
-    <span id="close-modal">&times;</span>
-    <h2>Test Results</h2>
-    <p>WPM: <span id="modal-wpm">0</span></p>
-    <p>Accuracy: <span id="modal-accuracy">0</span>%</p>
-    <p>Total Characters Typed: <span id="modal-total">0</span></p>
-    <p>Correct Characters: <span id="modal-correct">0</span></p>
-    <p>Time Selected: <span id="modal-time">0</span>s</p>
-  </div>
-</div>
+        <!-- Modal -->
+        <div id="result-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal">&times;</span>
+                <h2>Test Results</h2>
+                <p>WPM: <span id="modal-wpm">0</span></p>
+                <p>Accuracy: <span id="modal-accuracy">0</span>%</p>
+                <p>Total Characters Typed: <span id="modal-total">0</span></p>
+                <p>Correct Characters: <span id="modal-correct">0</span></p>
+                <p>Time Selected: <span id="modal-time">0</span>s</p>
+            </div>
+        </div>
 
-</body>
+    </body>
 </html>
