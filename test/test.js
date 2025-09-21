@@ -1,4 +1,3 @@
-// Elements
 const display = document.getElementById("text-display");
 const input = document.getElementById("text-input");
 const timeSelect = document.getElementById("time-select");
@@ -8,7 +7,6 @@ const wpmDisplay = document.getElementById("wpm");
 const accuracyDisplay = document.getElementById("accuracy");
 const timeDisplay = document.getElementById("time");
 
-// Modal elements
 const modal = document.getElementById("result-modal");
 const closeModal = document.getElementById("close-modal");
 const modalWpm = document.getElementById("modal-wpm");
@@ -17,7 +15,6 @@ const modalTotal = document.getElementById("modal-total");
 const modalCorrect = document.getElementById("modal-correct");
 const modalTime = document.getElementById("modal-time");
 
-// Quotes
 const quotes = [
   "The quick brown fox jumps over the lazy dog.",
   "Typing fast is a skill worth mastering.",
@@ -31,7 +28,6 @@ const quotes = [
   "Every expert was once a beginner."
 ];
 
-// Variables
 let currentText = "";
 let timer;
 let timeLeft = parseInt(timeSelect.value);
@@ -40,7 +36,6 @@ let correctTyped = 0;
 let timerStarted = false;
 let elapsedTime = 0;
 
-// Functions
 function getRandomQuotes(count) {
   let selected = [];
   for (let i = 0; i < count; i++) {
@@ -85,13 +80,9 @@ function startTimer() {
       timeLeft--;
       elapsedTime++;
       timeDisplay.textContent = timeLeft;
-
-      // Update WPM every second
       const wordsTyped = input.value.trim().split(/\s+/).length;
       const wpm = elapsedTime > 0 ? Math.round((wordsTyped / elapsedTime) * 60) : 0;
       wpmDisplay.textContent = isNaN(wpm) ? 0 : wpm;
-
-      // End game if all text typed
       if (input.value === currentText) endGame();
 
     } else {
@@ -104,7 +95,6 @@ function endGame() {
   clearInterval(timer);
   input.disabled = true;
 
-  // Show modal
   modalWpm.textContent = wpmDisplay.textContent;
   modalAccuracy.textContent = accuracyDisplay.textContent;
   modalTotal.textContent = totalTyped;
@@ -113,11 +103,9 @@ function endGame() {
   modal.style.display = "block";
 }
 
-// Close modal
 closeModal.onclick = () => modal.style.display = "none";
 window.onclick = (event) => { if (event.target === modal) modal.style.display = "none"; };
 
-// Typing input event
 input.addEventListener("input", () => {
   if (!timerStarted) startTimer();
 
@@ -128,44 +116,36 @@ input.addEventListener("input", () => {
   correctTyped = 0;
 
   spans.forEach((span, i) => {
+    span.classList.remove("correct", "incorrect", "current-char");
+
     if (!typed[i]) {
-      span.classList.remove("correct", "incorrect");
+      if (i === typed.length) {
+        span.classList.add("current-char");
+      }
     } else if (typed[i] === span.textContent) {
       span.classList.add("correct");
-      span.classList.remove("incorrect");
       correctTyped++;
     } else {
       span.classList.add("incorrect");
-      span.classList.remove("correct");
     }
   });
 
-  // Update Accuracy
   const accuracy = totalTyped ? Math.round((correctTyped / totalTyped) * 100) : 0;
   accuracyDisplay.textContent = accuracy;
-
-  // End game if all text typed
   if (input.value === currentText) endGame();
 });
 
-// Anti-copy protection
+
 display.addEventListener("contextmenu", e => e.preventDefault());
 display.addEventListener("keydown", e => {
   if ((e.ctrlKey || e.metaKey) && e.key === "c") e.preventDefault();
 });
 
-// Event listeners
 timeSelect.addEventListener("change", loadText);
 restartBtn.addEventListener("click", () => {
   modal.style.display = "none";
   loadText();
 });
 
-// Initial load
 loadText();
 
-const darkToggle = document.getElementById("darkModeToggle");
-
-darkToggle.addEventListener("change", () => {
-  document.body.classList.toggle("dark-mode");
-});
