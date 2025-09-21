@@ -146,6 +146,4 @@ restartBtn.addEventListener("click", () => {
   modal.style.display = "none";
   loadText();
 });
-
-loadText();
-
+document.addEventListener("DOMContentLoaded", loadText);
